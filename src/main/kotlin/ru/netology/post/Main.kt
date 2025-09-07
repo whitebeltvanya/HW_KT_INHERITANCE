@@ -42,6 +42,10 @@ object WallService {
 
     fun getNewId(): Int = newId++
     fun getPostsCounts() = posts.size
+    fun clear() {
+        posts = emptyArray<Post>()
+        newId =0
+    }
 }
 
 fun main() {
