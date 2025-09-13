@@ -1,6 +1,5 @@
 package ru.netology.post
 
-import org.jetbrains.annotations.Nullable
 
 data class Post(
     val id: Int = 0,
