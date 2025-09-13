@@ -40,7 +40,7 @@ object WallService {
         return false
     }
 
-    fun getNewId(): Int = newId++
+    fun getNewId(): Int = ++ newId //thanks to
     fun getPostsCounts() = posts.size
     fun clear() {
         posts = emptyArray<Post>()
@@ -53,14 +53,13 @@ fun main() {
     val wallService = WallService
 
     println(wallService.add(post))
-    println(wallService.add(post))
-    println(wallService.getPostsCounts())
+    println("All posts counts: ${wallService.getPostsCounts()}")
 
     val newPost = Post(id = 3, text = "New Text")
     if (wallService.update(newPost)) {
         println(newPost)
     } else {
-        println("Post not found")
+        println("Post id=${newPost.id} not found")
     }
 
 
