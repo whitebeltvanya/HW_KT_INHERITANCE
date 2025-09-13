@@ -40,7 +40,7 @@ object WallService {
         return false
     }
 
-    fun getNewId(): Int = ++ newId //thanks to
+    fun getNewId(): Int = ++ newId //thanks to jomarzka
     fun getPostsCounts() = posts.size
     fun clear() {
         posts = emptyArray<Post>()
