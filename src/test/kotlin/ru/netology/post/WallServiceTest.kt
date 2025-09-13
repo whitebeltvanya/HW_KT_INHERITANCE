@@ -23,7 +23,7 @@ class WallServiceTest {
     @Test
     fun updateTestFall() {
         val newPost = Post(text = "New post")
-        val postUpdated = Post(id=3, text = "Post with updated text")
+        val postUpdated = Post(id = 3, text = "Post with updated text")
         WallService.add(newPost)
         assertFalse(WallService.update(postUpdated))
     }
@@ -31,7 +31,7 @@ class WallServiceTest {
     @Test
     fun updateTestRight() {
         val newPost = Post(text = "New post")
-        val postUpdated = Post(id=1, text = "Post with updated text")
+        val postUpdated = Post(id = 1, text = "Post with updated text")
         WallService.add(newPost)
         assertTrue(WallService.update(postUpdated))
     }

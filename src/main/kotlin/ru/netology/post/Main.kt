@@ -1,6 +1,5 @@
 package ru.netology.post
 
-
 data class Post(
     val id: Int = 0,
     val ownerId: Int = 0,
@@ -12,7 +11,8 @@ data class Post(
     val canDelete: Boolean = false,
     val views: Views? = null,
     val likes: Likes? = null,
-    val reposts: Reposts? = null
+    val reposts: Reposts? = null,
+    var attachments: Array<Attachment> = emptyArray<Attachment>()
 )
 
 data class Views(val counts: Int)
@@ -20,7 +20,54 @@ data class Likes(
     val counts: Int, val userLikes: Boolean = false,
     val canLike: Boolean = false, val canPublish: Boolean = false
 )
-data class Reposts(val count:Integer, val userReposted: Boolean = false)
+
+data class Reposts(val count: Integer, val userReposted: Boolean = false)
+
+enum class AttachmentType {
+    FOTO,
+    AUDIO,
+    VIDEO,
+    DOC,
+    LINK,
+    NOTE
+}
+
+interface Attachment {
+    val type: AttachmentType
+}
+
+data class AttachFoto (
+    val id: Int =0,
+    val ownerId: Int = 0,
+    val albumId: Int =0,
+    val userId: Int = 0,
+    val width: Int = 0,
+    val height: Int = 0,
+): Attachment{
+    override val type: AttachmentType = AttachmentType.FOTO
+}
+
+data class AttachAudio (
+    val id: Int =0,
+    val ownerId: Int = 0,
+    val artist: String ="",
+    val title: String = "",
+    val duration: Int = 0,
+    val url: String = ""
+): Attachment{
+    override val type: AttachmentType = AttachmentType.AUDIO
+}
+
+data class AttachVideo (
+    val id: Int =0,
+    val ownerId: Int = 0,
+    val title: String = "",
+    val description: String = "",
+    val duration: Int = 0,
+): Attachment{
+    override val type: AttachmentType = AttachmentType.VIDEO
+}
+
 
 object WallService {
 
@@ -43,11 +90,11 @@ object WallService {
         return false
     }
 
-    fun getNewId(): Int = ++ newId //thanks to jomarzka
+    fun getNewId(): Int = ++newId //thanks to jomarzka
     fun getPostsCounts() = posts.size
     fun clear() {
         posts = emptyArray<Post>()
-        newId =0
+        newId = 0
     }
 }
 
