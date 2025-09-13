@@ -1,5 +1,7 @@
 package ru.netology.post
 
+import org.jetbrains.annotations.Nullable
+
 data class Post(
     val id: Int = 0,
     val ownerId: Int = 0,
@@ -9,8 +11,9 @@ data class Post(
     val isFavorite: Boolean = false,
     val canEdit: Boolean = false,
     val canDelete: Boolean = false,
-    val views: Views = Views(0),
-    val likes: Likes = Likes(0)
+    val views: Views? = null,
+    val likes: Likes? = null,
+    val reposts: Reposts? = null
 )
 
 data class Views(val counts: Int)
@@ -18,6 +21,7 @@ data class Likes(
     val counts: Int, val userLikes: Boolean = false,
     val canLike: Boolean = false, val canPublish: Boolean = false
 )
+data class Reposts(val count:Integer, val userReposted: Boolean = false)
 
 object WallService {
 
