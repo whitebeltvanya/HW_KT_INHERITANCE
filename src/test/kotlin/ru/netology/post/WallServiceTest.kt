@@ -14,7 +14,6 @@ class WallServiceTest {
     @Test
     fun addTest() {
         val post = Post(text = "test")
-        WallService.add(post)
         val expected = 1
         val actual = WallService.add(post).id
         assertEquals(expected, actual)
@@ -23,17 +22,18 @@ class WallServiceTest {
 
     @Test
     fun updateTestFall() {
-        val newPost = Post(id = 3, text = "test 2")
-        WallService.update(newPost)
-        assertFalse(WallService.update(newPost))
+        val newPost = Post(text = "New post")
+        val postUpdated = Post(id=3, text = "Post with updated text")
+        WallService.add(newPost)
+        assertFalse(WallService.update(postUpdated))
     }
 
     @Test
     fun updateTestRight() {
-        val post = Post(text = "test upd 1")
-        val postCheck = Post(id=0, text = "")
-        WallService.add(post)
-        assertTrue(WallService.update(postCheck))
+        val newPost = Post(text = "New post")
+        val postUpdated = Post(id=1, text = "Post with updated text")
+        WallService.add(newPost)
+        assertTrue(WallService.update(postUpdated))
     }
 
 }
